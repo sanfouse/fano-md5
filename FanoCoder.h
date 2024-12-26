@@ -8,7 +8,7 @@
 class FanoCoder {
 public:
     void compress(const std::string &inputFilename, const std::string &outputFilename);
-    void decompress(const std::string &inputFilename, const std::string &outputFilename);
+    void decompress(const std::string &originalFileName, const std::string &inputFilename, const std::string &outputFilename);
 
 private:
     struct Node {

@@ -18,12 +18,14 @@ int main() {
         coder.compress(inputFilename, outputFilename);
 
     } else if (mode == 2) {
-        string inputFilename, outputFilename;
+        string originalFileName, inputFilename, outputFilename;
+        cout << "Введите имя исходного файла: ";
+        cin >> originalFileName;
         cout << "Введите имя архивного файла: ";
         cin >> inputFilename;
         cout << "Введите имя выходного файла: ";
         cin >> outputFilename;
-        coder.decompress(inputFilename, outputFilename);
+        coder.decompress(originalFileName, inputFilename, outputFilename);
 
     } else {
         cout << "Неверный режим." << endl;

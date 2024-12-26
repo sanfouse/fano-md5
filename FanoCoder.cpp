@@ -120,7 +120,7 @@ void FanoCoder::compress(const std::string &inputFilename, const std::string &ou
 }
 
 
-void FanoCoder::decompress(const std::string &inputFilename, const std::string &outputFilename) {
+void FanoCoder::decompress(const std::string &originalFileName, const std::string &inputFilename, const std::string &outputFilename) {
     std::ifstream file(inputFilename, std::ios::binary);
     if (!file) {
         throw std::runtime_error("Ошибка: не удалось открыть файл для чтения: " + inputFilename);
@@ -146,7 +146,9 @@ void FanoCoder::decompress(const std::string &inputFilename, const std::string &
     file.close();
 
     std::string decoded = decode(encoded, encodingTable);
-    verifyIntegrity(decoded, hash);
+    std::string original = loadFromFile(originalFileName);
+    
+    verifyIntegrity(original, decoded);
 
     saveToFile(outputFilename, decoded);
     std::cout << "Файл успешно разархивирован в " << outputFilename << std::endl;
